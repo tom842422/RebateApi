@@ -30,6 +30,8 @@ def send(type):
             ]
         }
         )
+        response_main = requests.request(
+            "POST", url=url_main, headers=header, data=payload_main)
         url_detail = "http://192.168.1.12:9999/Api/RebateAgreementSaveBillDataByJson/WholesaleOrderDetailByJson"
         payload_detail = json.dumps({
             "secretKey": "123456",
@@ -60,8 +62,6 @@ def send(type):
             ]
         }
         )
-        response_main = requests.request(
-            "POST", url=url_main, headers=header, data=payload_main)
         response_detail = requests.request(
             "POST", url_detail, headers=header, data=payload_detail)
         return response_main, response_detail
@@ -71,8 +71,8 @@ def send(type):
             "secretKey": "123456",
             "data": [
                 {
-                    "id": "0CD68119-6980-4394-8ABE-D1A78089BE5C2",
-                    "RSONumber": "E381DB0",
+                    "id": "0CD68119-6980-4394-8ABE-D1A78089BE5C2113",
+                    "RSONumber": "E381DB1",
                     "SerialNumberTime": "2022-08-25",
                     "SalesOrganizationNo": "sc0001",
                     "SalesOrganization": "成都青羊店",
@@ -83,21 +83,41 @@ def send(type):
                 }
             ]
         })
+        response_main = requests.request(
+            "POST", url=url_main, headers=header, data=payload_main)
         url_detail = "http://192.168.1.12:9999/Api/RebateAgreementSaveBillDataByJson/RetailSalesOrderDetailByJson"
         payload_detail = json.dumps({
             "secretKey": "123456",
             "data": [
                 {
-                    "id": "0CD68119-6980-4394-8ABE-D1A78089BE5C22",
-                    "RSONumber": "E381DB0",
+                    "id": "0CD68119-6980-4394-8ABE-D1A78089BE5C2114",
+                    "RSONumber": "E381DB1",
                     "Psn": "751568",
                     "Quantity": 100,
                     "Price": 10,
                     "PriceTaxi": 12,
                     "TaxRate": 20,
                     "DrugsBase_DrugName": "阿昔洛韦乳膏",
-                    "DrugsBase_Specification": "10g:0.3g",
-                    "DrugsBase_Manufacturer": "福建太平洋制药有限公司",
+                    "DrugsBase_Specification": "5mg*12袋",
+                    "DrugsBase_Manufacturer": "海南新世通制药有限公司",
+                    "ApprovalNumber": "",
+                    "VenderErpId": "3332",
+                    "VenderErpName": "广东壹号药业有限公司",
+                    "VenderErpType": "",
+                    "GiftSign_Detail": "free",
+                    "BatchPurchasePrice_Detail": 11.5
+                },
+                {
+                    "id": "0CD68119-6980-4394-8ABE-D1A78089BE5C2115",
+                    "RSONumber": "E381DB1",
+                    "Psn": "751568",
+                    "Quantity": 20,
+                    "Price": 10,
+                    "PriceTaxi": 12,
+                    "TaxRate": 20,
+                    "DrugsBase_DrugName": "阿昔洛韦乳膏",
+                    "DrugsBase_Specification": "60ml",
+                    "DrugsBase_Manufacturer": "江西正信堂生物科技有限公司",
                     "ApprovalNumber": "",
                     "VenderErpId": "3332",
                     "VenderErpName": "广东壹号药业有限公司",
@@ -108,8 +128,6 @@ def send(type):
             ]
         }
         )
-        response_main = requests.request(
-            "POST", url=url_main, headers=header, data=payload_main)
         response_detail = requests.request(
             "POST", url_detail, headers=header, data=payload_detail)
         return response_main, response_detail
@@ -119,7 +137,7 @@ def send(type):
             "secretKey": "123456",
             "data": [
                 {
-                    "id": "822777EB-701A-4169-946C-B5F183EC5034",
+                    "id": "822777EB-701A-4169-946C-B5F183EC503433",
                     "DeliNumber": "996DFC5",
                     "SerialNumberTime": "2022-08-25",
                     "SupplierNameId": "",
@@ -135,17 +153,19 @@ def send(type):
             ]
         }
         )
+        response_main = requests.request(
+            "POST", url=url_main, headers=header, data=payload_main)
         url_detail = "http://192.168.1.12:9999/Api/RebateAgreementSaveBillDataByJson/PurchaseDeliveryDetailByJson"
         payload_detail = json.dumps({
             "secretKey": "123456",
             "data": [
                 {
-                    "id": "822777EB-701A-4169-946C-B5F183EC5034",
+                    "id": "822777EB-701A-4169-946C-B5F183EC503433",
                     "DeliNumber": "996DFC5",
-                    "Psn": "56694",
-                    "QuantityReal": 70,
-                    "Quantity": 70,
-                    "BuyCount": 70,
+                    "Psn": "90227378",
+                    "QuantityReal": 100,
+                    "Quantity": 100,
+                    "BuyCount": 100,
                     "Price": 50,
                     "PriceTaxi": 53,
                     "DrugsBase_DrugName": "尿素维E乳膏",
@@ -164,11 +184,9 @@ def send(type):
                 }
             ]
         })
-        response_main = requests.request(
-            "POST", url=url_main, headers=header, data=payload_main)
         response_detail = requests.request(
             "POST", url_detail, headers=header, data=payload_detail)
-        return response_main, response_detail
+        return response_main.text, response_detail.text
     elif type == '采购入库单':
         url_main = "http://192.168.1.12:9999/Api/RebateAgreementSaveBillDataByJson/PurcWarehousingByJson"
         payload_main = json.dumps({
@@ -177,7 +195,7 @@ def send(type):
                 {
                     "id": "2CDD5D28-8C73-4835-B57E-A52C99FE46FC",
                     "PWNumber": "0339656",
-                    "SerialNumberTime": "2022-08-25",
+                    "SerialNumberTime": "2022-09-25",
                     "SupplierNameId": "",
                     "SupplierName": "",
                     "TotalAmount": 103.6941,
@@ -186,6 +204,8 @@ def send(type):
                 }
             ]
         })
+        response_main = requests.request(
+            "POST", url=url_main, headers=header, data=payload_main)
         url_detail = "http://192.168.1.12:9999/Api/RebateAgreementSaveBillDataByJson/PurcWarehousingDetailByJson"
         payload_detail = json.dumps({
             "secretKey": "123456",
@@ -193,10 +213,10 @@ def send(type):
                 {
                     "id": "2CDD5D28-8C73-4835-B57E-A52C99FE46FC",
                     "PWNumber": "0339656",
-                    "Psn": "14283",
-                    "Quantity": 80,
-                    "QuantityReal": 80,
-                    "BuyCount": 80,
+                    "Psn": "90227378",
+                    "Quantity": 10,
+                    "QuantityReal": 10,
+                    "BuyCount": 10,
                     "Price": 13.15,
                     "PriceTaxi": 14.728,
                     "TaxRate": 12,
@@ -210,24 +230,22 @@ def send(type):
                     "Buy_Unit": "",
                     "Spxq": "",
                     "YouXq": "",
-                    "BatchPurchasePrice_Detail": 235.6685
+                    "BatchPurchasePrice_Detail": 11
                 }
             ]
         })
-        response_main = requests.request(
-            "POST", url=url_main, headers=header, data=payload_main)
         response_detail = requests.request(
             "POST", url_detail, headers=header, data=payload_detail)
-        return response_main, response_detail
+        return response_main.text, response_detail.text
     elif type == '采购退货单':
         url_main = "http://192.168.1.12:9999/Api/RebateAgreementSaveBillDataByJson/PurchaseReturnedByJson"
         payload_main = json.dumps({
             "secretKey": "123456",
             "data": [
                 {
-                    "id": "35A3203A-981D-4585-8B9A-6E5FC60C3B19",
+                    "id": "35A3203A-981D-4585-8B9A-6E5FC60C3B29",
                     "PRNumber": "1D627B6",
-                    "SerialNumberTime": "2022-08-25",
+                    "SerialNumberTime": "2022-09-25",
                     "SupplierNameId": "",
                     "SupplierName": "",
                     "Status": ""
@@ -235,15 +253,17 @@ def send(type):
             ]
         }
         )
+        response_main = requests.request(
+            "POST", url=url_main, headers=header, data=payload_main)
         url_detail = "http://192.168.1.12:9999/Api/RebateAgreementSaveBillDataByJson/PurchaseReturnedDetailByJson"
         payload_detail = json.dumps({
             "secretKey": "123456",
             "data": [
                 {
-                    "id": "35A3203A-981D-4585-8B9A-6E5FC60C3B19",
+                    "id": "35A3203A-981D-4585-8B9A-6E5FC60C3B29",
                     "PRNumber": "1D627B6",
-                    "Psn": "14283",
-                    "RebateCount": 100,
+                    "Psn": "90227378",
+                    "RebateCount": 4,
                     "Price": 50,
                     "PriceTaxi": 53,
                     "TaxRate": 6,
@@ -256,11 +276,9 @@ def send(type):
                 }
             ]
         })
-        response_main = requests.request(
-            "POST", url=url_main, headers=header, data=payload_main)
         response_detail = requests.request(
             "POST", url_detail, headers=header, data=payload_detail)
-        return response_main, response_detail
+        return response_main.text, response_detail.text
     elif type == '付款单':
         url_main = "http://192.168.1.12:9999/Api/RebateAgreementSaveBillDataByJson/ReceiptByJson"
         payload_main = json.dumps({
@@ -280,6 +298,8 @@ def send(type):
                 }
             ]
         })
+        response_main = requests.request(
+            "POST", url=url_main, headers=header, data=payload_main)
         url_detail = "http://192.168.1.12:9999/Api/RebateAgreementSaveBillDataByJson/ReceiptDetailByJson"
         payload_detail = json.dumps({
             "secretKey": "123456",
@@ -293,11 +313,9 @@ def send(type):
             ]
         }
         )
-        response_main = requests.request(
-            "POST", url=url_main, headers=header, data=payload_main)
         response_detail = requests.request(
             "POST", url_detail, headers=header, data=payload_detail)
-        return response_main, response_detail
+        return response_main.text, response_detail.text
 
 
 if __name__ == '__main__':
