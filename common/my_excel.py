@@ -1,10 +1,9 @@
-from colorsys import yiq_to_rgb
 import os
 import openpyxl
 import pprint
 import os
 from openpyxl import load_workbook
-from read_yaml import ReadYaml
+from common.read_yaml import ReadYaml as RY
 
 
 class MyExcel:
@@ -14,17 +13,16 @@ class MyExcel:
         判断路径是否存在。如果不存在，抛异常。
         :param excel_path: 完整的excel文件路径
         """
-        self.filename = eval(ReadYaml('filename').get_data())
-        self.sheetname = eval(ReadYaml('sheetname').get_data())
+        self.filename = eval(RY('filename').get_data())
+        self.sheetname = eval(RY('sheetname').get_data())
         excel_path = os.path.join(
             os.path.join(
                 os.path.dirname(os.path.dirname(os.path.abspath(__file__))) +
-                '\datas\\') + self.filename)
+                '\\datas\\') + self.filename)
 
         if os.path.isfile(excel_path):
             if excel_path.endswith(".xlsx"):
                 self.wb = load_workbook(excel_path)
-                self.wb[self.sheetname]
             else:
                 print("文件不是以xlsx结尾,不支持处理。")
         else:
@@ -52,7 +50,10 @@ class MyExcel:
 
 
 if __name__ == '__main__':
-    res = MyExcel().read_all_data()
-    pprint.pprint(res)
-    print(type(res))
-    print(res['datas'])
+    # res = MyExcel().read_all_data()
+    # pprint.pprint(res)
+    # print(type(res))
+    # print(res['datas'])
+    print(os.path.join(
+        os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
