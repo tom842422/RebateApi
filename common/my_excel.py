@@ -3,18 +3,20 @@ import openpyxl
 import pprint
 import os
 from openpyxl import load_workbook
-from common.read_yaml import ReadYaml as RY
+from read_yaml import ReadYaml as RY
 
 
 class MyExcel:
 
-    def __init__(self):
+    def __init__(self, filename, sheetname='sheet1'):
         """
         判断路径是否存在。如果不存在，抛异常。
         :param excel_path: 完整的excel文件路径
         """
-        self.filename = eval(RY('filename').get_data())
-        self.sheetname = eval(RY('sheetname').get_data())
+        # self.filename = eval(RY('filename').get_data())
+        # self.sheetname = eval(RY('sheetname').get_data())
+        self.filename = filename
+        self.sheetname = sheetname
         excel_path = os.path.join(
             os.path.join(
                 os.path.dirname(os.path.dirname(os.path.abspath(__file__))) +
@@ -48,12 +50,13 @@ class MyExcel:
                 cases_dict |= case
             return cases_dict
 
+    def read_column(self):
+        return self.wb.columns
+
 
 if __name__ == '__main__':
-    # res = MyExcel().read_all_data()
-    # pprint.pprint(res)
-    # print(type(res))
-    # print(res['datas'])
-    print(os.path.join(
-        os.path.join(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+    # res = MyExcel(filename='买家订单明细.xlsx').read_all_data()
+    res = MyExcel(filename='买家订单明细.xlsx').read_column()
+    print(res)
+    print(type(res))
+    # print(res['商品名称'])
